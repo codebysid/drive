@@ -15,7 +15,7 @@ const FolderInput = () => {
 
   const handleFolderClick = async () => {
     if (!folderName && !user?.user?._id) return
-    await createFolder(folderName, undefined, user?.user?._id, undefined)
+    await createFolder(folderName, undefined, user.user._id, undefined)
   }
   return (
     <>

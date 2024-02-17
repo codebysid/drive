@@ -1,19 +1,16 @@
 "use client"
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Href from '@/components/Href'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
 import { FaGoogle } from "react-icons/fa";
 
 function Signin() {
-  const session = useSession()
   const handleUser = (formData: FormData) => {
     signIn('credentials', { email: formData.get("email"), password: formData.get("password") })
   }
-  useEffect(() => {
-    console.log(session)
-  }, [session])
+
   return (
     <div>
       <h1>Sign in to Google Drive</h1>

@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import "./globals.css";
 import UserProvider from "@/context/UserProvider";
+import ParentFolderProvider from "@/context/ParentFolderProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -23,12 +24,14 @@ export default async function RootLayout({ children,
     <html lang="en">
       <Provider sesison={session}>
         <UserProvider>
-          <body className={`${inter.className} dark`}>
-            <Toaster />
-            {
-              session && <Navbar />
-            }
-            {children}</body>
+          <ParentFolderProvider>
+            <body className={`${inter.className} dark`}>
+              <Toaster />
+              {
+                session && <Navbar />
+              }
+              {children}</body>
+          </ParentFolderProvider>
         </UserProvider>
       </Provider>
     </html>
