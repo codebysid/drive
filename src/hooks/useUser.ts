@@ -3,7 +3,8 @@ import { useContext } from 'react'
 
 const useUser = () => {
   const user = useContext(USERCONTEXT)
-  return user?.user
+  if (user) return user
+  else undefined
 }
 
 export default useUser

@@ -10,7 +10,7 @@ type TUserProvider = {
 type TContext = {
   email: String,
   password: String,
-  _id: ObjectId
+  _id: ObjectId | undefined
 
 }
 
@@ -19,8 +19,9 @@ export const USERCONTEXT = React.createContext<
 >(undefined)
 
 const UserProvider: React.FC<TUserProvider> = ({ children }) => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({ email: "", password: "", _id: undefined })
   const session = useSession()
+
   const handleUserUpdate = async (email: string) => {
     const currUser = await getUser(email)
     setUser(currUser)

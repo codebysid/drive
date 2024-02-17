@@ -3,7 +3,7 @@ import Folder from "@/models/Folder.model"
 import User from "@/models/User.model"
 import connectToMongoDb from "@/utils/connectMongoDb"
 import { ObjectId } from "mongoose"
-import { revalidateTag, revalidatePath } from "next/cache"
+import { revalidatePath } from "next/cache"
 
 export async function createFolder(folderName: string, parentFolder: ObjectId | undefined, owner: ObjectId, subFolder: ObjectId | undefined) {
 

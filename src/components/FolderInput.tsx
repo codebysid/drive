@@ -14,8 +14,8 @@ const FolderInput = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setFolderName(e.target.value)
 
   const handleFolderClick = async () => {
-    if (!folderName && !user?._id) return
-    await createFolder(folderName, undefined, user._id, undefined)
+    if (!folderName && !user?.user?._id) return
+    await createFolder(folderName, undefined, user?.user?._id, undefined)
   }
   return (
     <>
