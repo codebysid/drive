@@ -6,7 +6,7 @@ const folderSchema = new Schema({
     required: true
   },
   subFolder: {
-    type: Schema.Types.ObjectId,
+    type: [Schema.Types.ObjectId],
     ref: "Folder"
   },
   parentFolder: {

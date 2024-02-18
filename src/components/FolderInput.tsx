@@ -6,16 +6,18 @@ import { Button } from "../components/ui/button"
 import { DialogFooter, DialogClose } from "../components/ui/dialog"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
+import useParentFolder from '@/hooks/useParentFolder'
 
 const FolderInput = () => {
   const [folderName, setFolderName] = useState("")
   const user = useUser()
+  const parentFolder = useParentFolder()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setFolderName(e.target.value)
 
   const handleFolderClick = async () => {
     if (!folderName && !user?.user?._id) return
-    await createFolder(folderName, undefined, user.user._id, undefined)
+    await createFolder(folderName, parentFolder?.parentFolder, user.user._id, undefined)
   }
   return (
     <>
