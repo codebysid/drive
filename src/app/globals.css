@@ -76,3 +76,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+#fileInput::file-selector-button{
+  color:var(--primary);
+  
+}
