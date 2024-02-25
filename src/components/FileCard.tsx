@@ -7,6 +7,7 @@ import {
 import { bytesToMb } from '@/utils/bytesToMb'
 import Link from 'next/link'
 import { formatTimeStamp } from '@/utils/formatTimeStamp'
+import DeleteFile from './DeleteFile'
 
 type TFile = {
   name: string,
@@ -26,12 +27,13 @@ type TFileData = {
 const FileCard: React.FC<TFileData> = ({ fileData }) => {
   return (
     <TableRow key={fileData.name} className='flex-1'>
-      <Link href={fileData.url} target='_blank' passHref legacyBehavior>
+      <Link href={fileData.url} target='_blank' passHref>
         <TableCell className="font-medium text-blue-500 hover:underline">{fileData.name}</TableCell>
       </Link>
       <TableCell>{fileData.format}</TableCell>
       <TableCell>{bytesToMb(fileData.bytes as number)} MB</TableCell>
       <TableCell className="text-right">{formatTimeStamp(fileData.createdAt)}</TableCell>
+      <TableCell><DeleteFile mongoId={fileData._id} cloudinaryPublicId={fileData.cloudinaryPublicId} /></TableCell>
     </TableRow>
   )
 }

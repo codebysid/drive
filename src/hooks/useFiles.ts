@@ -17,7 +17,6 @@ const useFiles = () => {
     }
     else {
       try {
-        console.log("getting files")
         const files = await getFiles(parentFolder?.parentFolder, user?.user._id)
         if (!files) {
           setFiles([])

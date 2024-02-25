@@ -47,7 +47,7 @@ const FileInput = () => {
       </div>
       <DialogFooter>
         <DialogClose asChild>
-          <Button onClick={handleFileSubmit} >Close</Button>
+          <Button onClick={handleFileSubmit} >Upload</Button>
         </DialogClose>
       </DialogFooter>
     </div>

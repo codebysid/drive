@@ -20,7 +20,7 @@ const AddComponent: React.FC<TAddComponent> = ({ title }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="navItem" className="w-full lg:text-xl lg:text-primary lg:underline lg:underline-offset-8">
+        <Button variant="navItem" className="w-full md:text-xl lg:text-xl md:text-primary lg:text-primary md:underline md:underline-offset-8 lg:underline lg:underline-offset-8">
           {title}
         </Button>
       </DialogTrigger>

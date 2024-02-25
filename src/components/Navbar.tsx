@@ -17,7 +17,7 @@ import BackButton from './BackButton'
 
 const Navbar = () => {
   return (
-    <div className='flex flex-row items-center justify-between pb-6'>
+    <div className='flex flex-row items-center justify-between lg:justify-around md:justify-around pb-6'>
       <div className='flex flex-row items-center'>
         <BackButton />
         <Logo />
@@ -25,7 +25,7 @@ const Navbar = () => {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className='lg:hidden'><Menu /></NavigationMenuTrigger>
+            <NavigationMenuTrigger className='lg:hidden md:hidden'><Menu /></NavigationMenuTrigger>
             <NavigationMenuContent className='w-fit'>
               <NavigationMenuLink asChild><AddFolder /></NavigationMenuLink>
               <NavigationMenuLink asChild><AddFile /></NavigationMenuLink>
@@ -34,14 +34,13 @@ const Navbar = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className=' lg:block hidden lg:flex lg:flex-row lg:items-center lg:gap-4'>
+      <div className=' lg:block hidden lg:flex lg:flex-row lg:items-center lg:gap-4 md:block md:flex md:flex-row md:items-center md:gap-4'>
         <span>
           <AddFolder />
         </span>
         <span>
           <AddFile />
         </span>
-        <SignOutButton />
       </div >
     </div>
   )

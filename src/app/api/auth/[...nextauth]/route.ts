@@ -40,8 +40,8 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async session({ session }) {
-      if (!session) return session
-      await createGoogleUser(session.user.email)
+      if (!session || !session.user) return session
+      await createGoogleUser(session.user.email as string)
       return session
     }
   },

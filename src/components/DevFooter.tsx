@@ -26,7 +26,7 @@ const socials = [
 
 const DevFooter = () => {
   return (
-    <div className='flex flex-col items-center pt-10 text-center mt-auto text-sm lg:text-base'>
+    <div className='flex flex-col items-center pt-10 text-center mt-auto text-sm lg:text-base md:text-base'>
       <span>Made with 💜 by Siddhant Jain</span>
       <div className='flex flex-row items-center gap-8'>
         <span className='text-primary'>&#10100;</span>

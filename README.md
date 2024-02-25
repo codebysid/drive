@@ -9,5 +9,4 @@ Note: This repo is not for Open Source Contributions. You can fork/download the 
     4. ShadCN
     5. Will add cloudinary...
 
-## Project is not completed yet, might have bugs.
 

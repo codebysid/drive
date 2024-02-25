@@ -28,12 +28,12 @@ const FAQ = () => {
   return (
     <div>
       <span className='text-3xl font-bold text-secondary'>Popular FAQ's ↴</span>
-      <Accordion type="single" collapsible className="w-full lg:text-2xl">
+      <Accordion type="single" collapsible className="w-full lg:text-2xl md:text-2xl">
         {
           questions.map((q) => {
-            return <AccordionItem value={String(q.id)}>
+            return <AccordionItem key={q.id} value={String(q.id)}>
               <AccordionTrigger className='text-left'>{q.question}</AccordionTrigger>
-              <AccordionContent className='lg:text-2xl'>{q.answer}</AccordionContent>
+              <AccordionContent className='lg:text-2xl md:text-2xl'>{q.answer}</AccordionContent>
             </AccordionItem>
           })
         }
