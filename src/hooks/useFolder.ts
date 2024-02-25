@@ -24,6 +24,8 @@ const useFolder = () => {
       }
       else setFolderData(data[0]?.results)
     } catch (err) {
+
+      toast({ title: "Something went wrong", variant: "destructive" })
       console.log(err)
     }
   }

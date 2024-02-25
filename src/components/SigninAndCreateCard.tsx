@@ -1,3 +1,4 @@
+"use client"
 import { createUser } from '@/actions/user';
 import { Button } from "@/components/ui/button";
 import {
@@ -14,12 +15,28 @@ import {
 import { signIn } from 'next-auth/react';
 import React from 'react';
 import { FaGoogle } from "react-icons/fa";
+import { useToast } from './ui/use-toast';
 
 const SigninAndCreateCard = () => {
+  const { toast } = useToast()
   const handleUser = (formData: FormData) => {
     signIn('credentials', { email: formData.get("email"), password: formData.get("password") })
   }
-
+  const handleCreateUser = async (formData: FormData) => {
+    const email = formData.get("email")
+    const password = formData.get("password")
+    if (!email || !password) {
+      toast({ title: "Email and Pssword required 😖" })
+      return
+    }
+    try {
+      await createUser(formData)
+      toast({ title: "User Created 👍" })
+    } catch (err) {
+      toast({ title: "Something went wrong", variant: "destructive" })
+      console.log(err)
+    }
+  }
   return (
     <Tabs defaultValue="account" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
@@ -36,7 +53,7 @@ const SigninAndCreateCard = () => {
               <span className='text-center'>or</span>
               <Input placeholder='Enter email' type='email' name='email' required />
               <Input placeholder='Enter password' type='password' name='password' required />
-              <Button type='submit'>Sign in</Button>
+              <Button type='submit'>sign in</button>
             </form>
 
           </CardContent>

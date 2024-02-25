@@ -17,7 +17,7 @@ import BackButton from './BackButton'
 
 const Navbar = () => {
   return (
-    <div className='flex flex-row items-center justify-between lg:justify-around md:justify-around pb-6'>
+    <div className='flex flex-row items-center justify-between pb-6'>
       <div className='flex flex-row items-center'>
         <BackButton />
         <Logo />
@@ -41,6 +41,7 @@ const Navbar = () => {
         <span>
           <AddFile />
         </span>
+        <SignOutButton />
       </div >
     </div>
   )

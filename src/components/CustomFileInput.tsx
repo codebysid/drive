@@ -33,6 +33,7 @@ const FileInput = () => {
       data.append("fileData", file)
       await saveFile(data, user?.user._id, parentFolder.parentFolder)
     } catch (err) {
+      toast({ title: "Something went wrong", variant: "destructive" })
       console.log(err)
     }
   }

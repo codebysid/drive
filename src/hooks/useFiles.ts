@@ -25,6 +25,8 @@ const useFiles = () => {
         setFiles(files)
       } catch (err) {
         console.log(err)
+
+        toast({ title: "Something went wrong", variant: "destructive" })
       }
     }
   }

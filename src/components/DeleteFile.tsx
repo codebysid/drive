@@ -21,6 +21,9 @@ const DeleteFile: React.FC<TDeleteFile> = ({ mongoId, cloudinaryPublicId }) => {
       toast({ title: "File Deleted 👍" })
       await customRevalidate("/dash")
     } catch (err) {
+
+      toast({ title: "Something went wrong", variant: "destructive" })
+
       console.log(err)
     }
   }

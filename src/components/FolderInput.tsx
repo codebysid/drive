@@ -22,7 +22,13 @@ const FolderInput = () => {
       toast({ title: "Folder Name is required 👀" })
       return
     }
-    await createFolder(folderName, parentFolder?.parentFolder, user?.user?._id, undefined)
+    try {
+      await createFolder(folderName, parentFolder?.parentFolder, user?.user?._id, undefined)
+    } catch (err) {
+      console.log(err)
+
+      toast({ title: "Something went wrong", variant: "destructive" })
+    }
   }
   return (
     <>
