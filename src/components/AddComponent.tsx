@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { FolderPlus, Paperclip } from "lucide-react";
 import FolderInput from "./FolderInput";
-import FileInput from "./FileInput";
+import FileInput from "./CustomFileInput";
 
 type TAddComponent = {
   title: string;
@@ -20,11 +20,7 @@ const AddComponent: React.FC<TAddComponent> = ({ title }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="iconOutlineButton">
-          {
-            isFolder ? <FolderPlus /> : <Paperclip />
-          }
-
+        <Button variant="navItem" className="w-full lg:text-xl lg:text-primary lg:underline lg:underline-offset-8">
           {title}
         </Button>
       </DialogTrigger>

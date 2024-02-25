@@ -3,7 +3,7 @@ import { ObjectId } from 'mongoose'
 import React, { useState } from 'react'
 
 type TParentFolderContext = {
-  parentFolder: ObjectId | boolean,
+  parentFolder: ObjectId | null,
   updateParentFolder: (folderId: ObjectId) => void
 }
 
@@ -11,10 +11,10 @@ type TParentFolderProvider = {
   children: React.ReactNode
 }
 
-export const PARENT_FOLDER_CONTEXT = React.createContext<TParentFolderContext | undefined>(undefined)
+export const PARENT_FOLDER_CONTEXT = React.createContext<TParentFolderContext | null>(null)
 
 const ParentFolderProvider: React.FC<TParentFolderProvider> = ({ children }) => {
-  const [parentFolderId, setParentFolderId] = useState<ObjectId | boolean>(false)
+  const [parentFolderId, setParentFolderId] = useState<ObjectId | null>(null)
 
   const updateParentFolder = (folderId: ObjectId) => {
     setParentFolderId(folderId)

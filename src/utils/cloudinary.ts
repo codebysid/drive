@@ -15,11 +15,23 @@ const uploadOnCloudinary = async (localPath: string, owner: string) => {
       resource_type: "auto",
       folder: owner,
     })
+    console.log(res)
     return res
   } catch (err) {
     console.log(err)
   } finally {
     unlinkSync(localPath)
+  }
+}
+
+export const deleteFileFromCloudinary = async (public_id: string) => {
+  if (!public_id) return
+  try {
+    await cloudinary.uploader.destroy(public_id).then((res) => {
+      console.log(res)
+    }).catch(err => console.log(err))
+  } catch (err) {
+    console.log(err)
   }
 }
 

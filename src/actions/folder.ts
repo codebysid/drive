@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache"
 
 export async function createFolder(folderName: string, parentFolder: ObjectId | undefined, owner: ObjectId, subFolder: ObjectId | undefined) {
 
-  if (!folderName || !owner) throw new Error("401: foldername and owner required")
+  if (!folderName || !owner) throw new Error("foldername and owner required")
 
   try {
     await connectToMongoDb(process.env.MONGODB_URI as string)
@@ -25,6 +25,7 @@ export async function createFolder(folderName: string, parentFolder: ObjectId | 
 }
 
 export async function getFolders(ownerEmail: String, parentFolderId: ObjectId | undefined = undefined) {
+  if (!ownerEmail) throw new Error("OwnerEmail is not specified")
   try {
     await connectToMongoDb(process.env.MONGODB_URI as string)
     if (parentFolderId) {

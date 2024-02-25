@@ -9,7 +9,7 @@ export async function createUser(formData: FormData) {
   const email = formData.get("email")
   const password = formData.get("password")
 
-  if (!email || !password) throw new Error("401:Credentials not found")
+  if (!email || !password) throw new Error("Credentials not found")
   await connectToMongoDb(process.env.MONGODB_URI as string)
   const hashedPassword = await getHash(password as string)
   const user = await User.create({
@@ -19,7 +19,7 @@ export async function createUser(formData: FormData) {
 }
 
 export async function createGoogleUser(email: string) {
-  if (!email) throw new Error("401: no email found")
+  if (!email) throw new Error("no email found")
   try {
     await connectToMongoDb(process.env.MONGODB_URI as string)
     const checkUser = await User.findOne({ email })
@@ -34,7 +34,7 @@ export async function createGoogleUser(email: string) {
 }
 
 export async function getUser(email: string) {
-  if (!email) throw new Error("401:no email found")
+  if (!email) throw new Error("no email found")
   try {
     await connectToMongoDb(process.env.MONGODB_URI as string)
     const user = await User.findOne({ email })

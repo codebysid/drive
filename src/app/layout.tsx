@@ -1,13 +1,14 @@
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
+import ParentFolderProvider from "@/context/ParentFolderProvider";
 import Provider from "@/context/Provider";
+import UserProvider from "@/context/UserProvider";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import "./globals.css";
-import UserProvider from "@/context/UserProvider";
-import ParentFolderProvider from "@/context/ParentFolderProvider";
+import DevFooter from "@/components/DevFooter";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,12 +26,14 @@ export default async function RootLayout({ children,
       <Provider sesison={session}>
         <UserProvider>
           <ParentFolderProvider>
-            <body className={`${inter.className} dark`}>
+            <body className={`${inter.className} pt-10 px-10 dark min-h-[100vh] flex flex-col`}>
               <Toaster />
               {
                 session && <Navbar />
               }
-              {children}</body>
+              {children}
+              <DevFooter />
+            </body>
           </ParentFolderProvider>
         </UserProvider>
       </Provider>

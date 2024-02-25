@@ -1,32 +1,30 @@
 "use client"
 import React from 'react'
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import Href from '@/components/Href'
-import { signIn } from 'next-auth/react'
-import { FaGoogle } from "react-icons/fa";
+import Image from 'next/image'
+import Logo from './Logo'
+import TechStack from './TechStack'
+import SigninAndCreateCard from './SigninAndCreateCard'
+import FAQ from './FAQ'
 
 function Signin() {
-  const handleUser = (formData: FormData) => {
-    signIn('credentials', { email: formData.get("email"), password: formData.get("password") })
-  }
 
   return (
-    <div>
-      <h1>Sign in to Google Drive</h1>
-      <form className='flex flex-col gap-4' action={handleUser}>
-        <Input placeholder='Enter email' type='email' name='email' required />
-        <Input placeholder='Enter password' type='password' name='password' required />
-        <Button type='submit'>Sign in</Button>
-
-        <Button onClick={() => signIn('google')} type="button" variant='iconButton'>
-          <FaGoogle />
-          Sign Up with Google</Button>
-      </form>
-      <Href href='/create' title="Don't have an account ?" callToAction='Create Now' />
+    <div className='flex flex-col gap-14 w-full'>
+      <Logo />
+      <div className='flex flex-col lg:flex-row lg:h-[80vh] gap-10 '>
+        <div className='flex flex-col gap-10 lg:gap-20 lg:justify-center'>
+          <h2 className='text-3xl font-bold lg:text-4xl'><span className='primaryText'>Store,</span> <span className='primaryText'>View,</span> and <span className='primaryText'>Access</span> files seamlessly.<br /><br />All at one<span className='primaryText'> place.</span></h2>
+          <SigninAndCreateCard />
+        </div>
+        <div className='relative w-full h-[40vh] lg:h-full'>
+          <Image src="/cloud.jpg" sizes='100vw' className=' object-cover rounded-xl' alt='cloud:Adobe FIrefly' fill />
+        </div>
+      </div>
+      <TechStack />
+      <FAQ />
     </div>
   )
-
 }
 
 export default Signin
