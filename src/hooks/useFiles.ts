@@ -33,7 +33,7 @@ const useFiles = () => {
 
   useEffect(() => {
     getUserFiles()
-  }, [user, parentFolder.parentFolder, parentFolder])
+  }, [user, parentFolder?.parentFolder, parentFolder])
   return files
 }
 

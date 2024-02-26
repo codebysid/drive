@@ -17,7 +17,8 @@ type TFile = {
   owner: ObjectId,
   bytes: Number,
   format: string,
-  createdAt: EpochTimeStamp
+  createdAt: EpochTimeStamp,
+  cloudinaryPublicId: string,
 }
 
 type TFileData = {
