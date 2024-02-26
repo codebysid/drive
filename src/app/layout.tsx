@@ -6,7 +6,7 @@ import UserProvider from "@/context/UserProvider";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "../utils/auth";
 import "./globals.css";
 import DevFooter from "@/components/DevFooter";
 const inter = Inter({ subsets: ["latin"] });
