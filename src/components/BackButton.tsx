@@ -7,7 +7,7 @@ import useParentFolder from '@/hooks/useParentFolder'
 const BackButton = () => {
   const value = useParentFolder()
   async function handleBack() {
-    value.updateParentFolder(null)
+    value?.updateParentFolder(null)
   }
 
   return (
