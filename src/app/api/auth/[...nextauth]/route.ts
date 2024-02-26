@@ -2,11 +2,11 @@ import { createGoogleUser } from "@/actions/user"
 import User from "@/models/User.model"
 import connectToMongoDb from "@/utils/connectMongoDb"
 import { compareHash } from "@/utils/passwords"
-import NextAuth, { AuthOptions } from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google"
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt"
