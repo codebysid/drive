@@ -5,10 +5,9 @@ import { ArrowLeft } from 'lucide-react'
 import useParentFolder from '@/hooks/useParentFolder'
 
 const BackButton = () => {
-  const { updateParentFolder } = useParentFolder()
-  const { parentFolder } = useParentFolder()
+  const value = useParentFolder()
   async function handleBack() {
-    updateParentFolder(null)
+    value.updateParentFolder(null)
   }
 
   return (

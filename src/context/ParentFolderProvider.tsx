@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 type TParentFolderContext = {
   parentFolder: ObjectId | null,
-  updateParentFolder: (folderId: ObjectId) => void
+  updateParentFolder: (folderId: ObjectId | null) => void
 }
 
 type TParentFolderProvider = {
@@ -16,7 +16,7 @@ export const PARENT_FOLDER_CONTEXT = React.createContext<TParentFolderContext | 
 const ParentFolderProvider: React.FC<TParentFolderProvider> = ({ children }) => {
   const [parentFolderId, setParentFolderId] = useState<ObjectId | null>(null)
 
-  const updateParentFolder = (folderId: ObjectId) => {
+  const updateParentFolder = (folderId: ObjectId | null) => {
     setParentFolderId(folderId)
   }
   return (
