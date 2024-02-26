@@ -4,6 +4,14 @@ import useUser from './useUser'
 import { useEffect, useState } from 'react'
 import useParentFolder from './useParentFolder'
 import { useToast } from '@/components/ui/use-toast'
+import { ObjectId } from 'mongoose'
+
+type TData = {
+  _id: ObjectId,
+  owner: ObjectId,
+  name: string,
+  results: []
+}
 
 const useFolder = () => {
   const [folderData, setFolderData] = useState([])
@@ -17,8 +25,11 @@ const useFolder = () => {
       toast({ title: "Login Pls 🤦" })
       return
     }
+
     try {
-      const data = await getFolders(user?.user?.email, parentFolder?.parentFolder)
+      let data: TData[] = []
+      if (!parentFolder?.parentFolder) data = await getFolders(user?.user?.email, undefined)
+      else data = await getFolders(user?.user?.email, parentFolder?.parentFolder)
       if (!data) {
         setFolderData([])
       }

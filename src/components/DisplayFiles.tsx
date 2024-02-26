@@ -1,6 +1,6 @@
 "use client"
 import useFiles from '@/hooks/useFiles'
-import React, { useEffect } from 'react'
+import React from 'react'
 import FileCard from './FileCard'
 import {
   Table,
@@ -9,11 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import useParentFolder from '@/hooks/useParentFolder'
 
 const DisplayFiles = () => {
   let files = useFiles()
-  const { parentFolder } = useParentFolder()
 
   return (
     <div className='flex flex-row flex-wrap gap-3'>

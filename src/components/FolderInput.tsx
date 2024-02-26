@@ -23,7 +23,8 @@ const FolderInput = () => {
       return
     }
     try {
-      await createFolder(folderName, parentFolder?.parentFolder, user?.user?._id, undefined)
+      if (!parentFolder?.parentFolder) await createFolder(folderName, undefined, user?.user?._id, undefined)
+      else await createFolder(folderName, parentFolder?.parentFolder, user?.user?._id, undefined)
     } catch (err) {
       console.log(err)
 
