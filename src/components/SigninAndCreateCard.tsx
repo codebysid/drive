@@ -1,4 +1,3 @@
-"use client"
 import { createUser } from '@/actions/user';
 import { Button } from "@/components/ui/button";
 import {
@@ -26,17 +25,21 @@ const SigninAndCreateCard = () => {
     const email = formData.get("email")
     const password = formData.get("password")
     if (!email || !password) {
-      toast({ title: "Email and Pssword required 😖" })
+      toast({ title: "Email and Password required" })
       return
     }
     try {
-      await createUser(formData)
+      const user = await createUser(formData)
+      if (!user) toast({ title: "Email and Password required" })
+
       toast({ title: "User Created 👍" })
     } catch (err) {
-      toast({ title: "Something went wrong", variant: "destructive" })
       console.log(err)
+
+      toast({ title: "Email and Password required" })
     }
   }
+
   return (
     <Tabs defaultValue="account" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
@@ -53,7 +56,7 @@ const SigninAndCreateCard = () => {
               <span className='text-center'>or</span>
               <Input placeholder='Enter email' type='email' name='email' required />
               <Input placeholder='Enter password' type='password' name='password' required />
-              <Button type='submit'>sign in</button>
+              <Button type='submit'>Sign in</Button>
             </form>
 
           </CardContent>
@@ -62,7 +65,7 @@ const SigninAndCreateCard = () => {
       <TabsContent value="password">
         <Card>
           <CardContent className="space-y-2">
-            <form action={createUser} className='flex flex-col gap-4 pt-5'>
+            <form action={handleCreateUser} className='flex flex-col gap-4 pt-5'>
               <Input placeholder='Enter email' name='email' type='email' required />
               <Input placeholder='Enter password' name='password' type='password' required />
               <Button type="submit">Create Account</Button>
