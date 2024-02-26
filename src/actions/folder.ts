@@ -2,7 +2,7 @@
 import Folder from "@/models/Folder.model"
 import User from "@/models/User.model"
 import connectToMongoDb from "@/utils/connectMongoDb"
-import mongoose, { ObjectId, isValidObjectId } from "mongoose"
+import mongoose, { ObjectId, Schema, isValidObjectId } from "mongoose"
 import { revalidatePath } from "next/cache"
 
 export async function createFolder(folderName: string, parentFolder: ObjectId | undefined, owner: ObjectId, subFolder: ObjectId | undefined) {
@@ -24,15 +24,16 @@ export async function createFolder(folderName: string, parentFolder: ObjectId | 
   }
 }
 
-export async function getFolders(ownerEmail: String, parentFolderId: ObjectId | undefined = undefined) {
+export async function getFolders(ownerEmail: String, parentFolderId: ObjectId | undefined) {
   if (!ownerEmail) throw new Error("OwnerEmail is not specified")
   try {
     await connectToMongoDb(process.env.MONGODB_URI as string)
     if (parentFolderId && isValidObjectId(parentFolderId)) {
+      const parentId = new mongoose.Types.ObjectId(String(parentFolderId))
       const folders = await Folder.aggregate([
         {
           $match: {
-            parentFolder: parentFolderId
+            parentFolder: parentId
           }
         },
         {

@@ -27,13 +27,22 @@ const useFolder = () => {
     }
 
     try {
-      let data: TData[] = []
-      if (!parentFolder?.parentFolder) data = await getFolders(user?.user?.email, undefined)
-      else data = await getFolders(user?.user?.email, parentFolder?.parentFolder)
+      if (!parentFolder?.parentFolder) {
+        const data = await getFolders(user?.user?.email, undefined)
+        if (!data) {
+          setFolderData([])
+          return
+        }
+        setFolderData(data[0]?.results)
+        return
+      }
+      const data = await getFolders(user?.user?.email, parentFolder?.parentFolder)
       if (!data) {
         setFolderData([])
+        return
       }
-      else setFolderData(data[0]?.results)
+      setFolderData(data[0]?.results)
+      return
     } catch (err) {
 
       toast({ title: "Something went wrong", variant: "destructive" })
@@ -43,7 +52,7 @@ const useFolder = () => {
 
   useEffect(() => {
     if (user?.user && user?.user?._id) handleGetFolders()
-  }, [user, parentFolder?.parentFolder])
+  }, [user, parentFolder?.parentFolder, parentFolder])
 
   return folderData
 }
