@@ -15,13 +15,19 @@ const uploadOnCloudinary = async (localPath: string, owner: string) => {
     const res = await cloudinary.uploader.upload(localPath, {
       resource_type: "auto",
       folder: owner,
-    })
-    console.log(res)
-    return res
+    });
+
+    const parsedRes = JSON.parse(JSON.stringify(res));
+    if (!(parsedRes && parsedRes.public_id)) {
+      throw new Error("Invalid Cloudinary response");
+    }
+
+    return parsedRes;
   } catch (err) {
-    console.log("cloudinary error", err)
+    console.log("cloudinary error", err);
+    throw err;
   } finally {
-    unlinkSync(localPath)
+    unlinkSync(localPath);
   }
 }
 
