@@ -33,7 +33,7 @@ export const saveFileLocally = async (formData: FormData) => {
     const tmpDirectory = `/tmp/${id}_${file.name}`;
 
     const bytes = await file.arrayBuffer()
-    const buffer = Buffer.from(bytes)
+    const buffer = Buffer.from(bytes).toString('base64')
     //if (!existsSync(tmpDirectory)) {
     //mkdir(tmpDirectory, { recursive: true }, function() { })
     //}
