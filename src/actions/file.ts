@@ -30,14 +30,13 @@ export const saveFileLocally = async (formData: FormData) => {
     if (!file) return
     console.log("file is", file)
     //const fileDirectory = join(process.cwd(), "/public/temp/")
-    console.log({ path: process.cwd() })
-    const tmpDirectory = path.join(process.cwd(), `public/${id}_${file.name}`);
+    const tmpDirectory = `/tmp/${id}_${file.name}`;
 
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
-    if (!existsSync(tmpDirectory)) {
-      mkdir(tmpDirectory, { recursive: true }, function() { })
-    }
+    //if (!existsSync(tmpDirectory)) {
+    //mkdir(tmpDirectory, { recursive: true }, function() { })
+    //}
     await writeFile(tmpDirectory, buffer)
     console.log("file local path is", tmpDirectory)
     return tmpDirectory
