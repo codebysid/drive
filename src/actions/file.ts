@@ -1,5 +1,5 @@
 "use server"
-import { ObjectId, mongo } from "mongoose"
+import { ObjectId } from "mongoose"
 import uploadOnCloudinary, { deleteFileFromCloudinary } from "../utils/cloudinary"
 import { writeFile } from "fs/promises"
 import { join } from "path"
@@ -13,10 +13,13 @@ export const saveFile = async (formData: FormData, owner: ObjectId, parentFolder
   if (!formData || !owner) throw new Error("formData and owner required")
   try {
     const localPath = await saveFileLocally(formData)
+    console.log("file created locally")
     const res = await uploadOnCloudinary(localPath as string, String(owner))
+    console.log("file uploaded on cloudinary")
     const file = formData.get("fileData") as File
     if (!res) throw new Error("cant upload on cloudinary")
     await saveFileOnMongo(res.url, owner, parentFolder, file.name, res.bytes, res.format, res.public_id)
+    console.log("file saved to mongo")
     revalidatePath("/dash")
   } catch (err) {
     console.log(err)
