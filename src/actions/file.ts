@@ -31,7 +31,7 @@ export const saveFileLocally = async (formData: FormData) => {
     console.log("file is", file)
     //const fileDirectory = join(process.cwd(), "/public/temp/")
     const encodeFileName = encodeURIComponent(`${id}_${file.name}`)
-    const tmpDirectory = `/tmp/${id}_${encodeFileName}`;
+    const tmpDirectory = `/tmp/${encodeFileName}`;
 
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
