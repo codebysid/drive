@@ -31,14 +31,18 @@ export const saveFileLocally = async (formData: FormData) => {
     const id = nanoid()
     const file = formData.get("fileData") as File
     if (!file) return
+    console.log("file is", file)
     const fileDirectory = join(process.cwd(), "/public/temp/")
+    console.log(fileDirectory)
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
+    const fileLocalPath = `${fileDirectory}/${id}_${file.name}`
     if (!existsSync(fileDirectory)) {
       mkdir(fileDirectory, { recursive: true }, function() { })
     }
-    await writeFile(`${fileDirectory}/${id}_${file.name}`, buffer)
-    return `${fileDirectory}/${id}_${file.name}`
+    await writeFile(fileLocalPath, buffer)
+    console.log("file local path is", fileLocalPath)
+    return fileLocalPath
   } catch (err) {
     console.log(err)
   }
