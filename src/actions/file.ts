@@ -2,7 +2,7 @@
 import { ObjectId } from "mongoose"
 import uploadOnCloudinary, { deleteFileFromCloudinary } from "../utils/cloudinary"
 import { writeFile } from "fs/promises"
-import { join } from "path"
+import path from "path"
 import { existsSync, mkdir } from "fs"
 import { nanoid } from 'nanoid'
 import connectToMongoDb from "@/utils/connectMongoDb"
@@ -13,13 +13,10 @@ export const saveFile = async (formData: FormData, owner: ObjectId, parentFolder
   if (!formData || !owner) throw new Error("formData and owner required")
   try {
     const localPath = await saveFileLocally(formData)
-    console.log("file created locally")
     const res = await uploadOnCloudinary(localPath as string, String(owner))
-    console.log("file uploaded on cloudinary")
     const file = formData.get("fileData") as File
     if (!res) throw new Error("cant upload on cloudinary")
     await saveFileOnMongo(res.url, owner, parentFolder, file.name, res.bytes, res.format, res.public_id)
-    console.log("file saved to mongo")
     revalidatePath("/dash")
   } catch (err) {
     console.log(err)
@@ -34,17 +31,16 @@ export const saveFileLocally = async (formData: FormData) => {
     console.log("file is", file)
     //const fileDirectory = join(process.cwd(), "/public/temp/")
 
-    const tmpDirectory = '/tmp/uploads';
-    const filePath = join(tmpDirectory, `${id}_${file.name}`);
+    const tmpDirectory = path.join(process.cwd(), `public/${id}_${file.name}`);
 
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
     if (!existsSync(tmpDirectory)) {
       mkdir(tmpDirectory, { recursive: true }, function() { })
     }
-    await writeFile(filePath, buffer)
-    console.log("file local path is", filePath)
-    return filePath
+    await writeFile(tmpDirectory, buffer)
+    console.log("file local path is", tmpDirectory)
+    return tmpDirectory
   } catch (err) {
     console.log(err)
   }
