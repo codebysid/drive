@@ -1,7 +1,4 @@
 "use client"
-import useFiles from '@/hooks/useFiles'
-import React from 'react'
-import FileCard from './FileCard'
 import {
   Table,
   TableBody,
@@ -9,12 +6,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
+import useFiles from '@/hooks/useFiles'
+import dynamic from 'next/dynamic'
+import React from 'react'
+import FilesTableLoader from './FilesTableLoader'
+const FileCard = dynamic(() => import("./FileCard"), {
+  loading: () => <FilesTableLoader />
+})
 const DisplayFiles = () => {
-  let files = useFiles()
+  const files = useFiles()
 
   return (
-    <div className='flex flex-row flex-wrap gap-3'>
+    <div className='flex flex-row flex-wrap gap-3 h-[60vh] overflow-auto'>
       {
         files.length > 0 && <h1 className='subHeading'>Your file's ↴</h1>
       }
@@ -22,7 +25,7 @@ const DisplayFiles = () => {
         files.length > 0 && <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Name</TableHead>
+              <TableHead className='w-[300px]'>Name</TableHead>
               <TableHead>Format</TableHead>
               <TableHead>Size</TableHead>
               <TableHead className="text-right">Created At</TableHead>

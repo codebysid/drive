@@ -1,5 +1,6 @@
+import dynamic from 'next/dynamic'
 import React from 'react'
-import AddComponent from './AddComponent'
+const AddComponent = dynamic(() => import("./AddComponent"))
 
 const AddFile = () => {
   return (

@@ -52,7 +52,7 @@ const useFolder = () => {
 
   useEffect(() => {
     if (user?.user && user?.user?._id) handleGetFolders()
-  }, [user, parentFolder?.parentFolder, parentFolder])
+  }, [user, parentFolder])
 
   return folderData
 }

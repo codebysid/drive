@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from "cloudinary"
-import { unlinkSync } from "fs"
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -11,20 +10,15 @@ cloudinary.config({
 
 const uploadOnCloudinary = async (localPath: string, owner: string) => {
   if (!localPath) return null
-  console.log("local path is", localPath)
   try {
-    console.log("Starting cloudinary upload");
     const res = await cloudinary.uploader.upload(localPath, {
       resource_type: "auto",
       folder: owner,
     });
-    console.log({ res });
 
-    // Check if the response is valid
     if (!res || !res.public_id) {
       throw new Error("Invalid Cloudinary response");
     }
-
     return res;
   } catch (err) {
     console.log("cloudinary error", err);

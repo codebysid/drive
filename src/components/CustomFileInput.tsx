@@ -1,16 +1,19 @@
 "use client"
-import React, { useState } from 'react'
-import { Input } from "@/components/ui/input"
-import { DialogFooter } from './ui/dialog'
-import { DialogClose } from '@radix-ui/react-dialog'
-import { Button } from './ui/button'
 import { saveFile } from '@/actions/file'
-import useUser from '@/hooks/useUser'
+import { Input } from "@/components/ui/input"
 import useParentFolder from '@/hooks/useParentFolder'
+import useUser from '@/hooks/useUser'
+import { DialogClose } from '@radix-ui/react-dialog'
+import dynamic from 'next/dynamic'
+import React, { Dispatch, SetStateAction, useState } from 'react'
+import { Button } from './ui/button'
+import { DialogFooter } from './ui/dialog'
 import { useToast } from './ui/use-toast'
+import Loader from "../components/Loader"
 
-const FileInput = () => {
+const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<boolean>> }) => {
   const [file, setFile] = useState<File>()
+  const [loading, setLoading] = useState(false)
   const user = useUser()
   const parentFolder = useParentFolder()
   const { toast } = useToast()
@@ -25,6 +28,7 @@ const FileInput = () => {
       return
     }
     try {
+      setLoading(true)
       const data = new FormData()
       if ((file.size / (1024 * 1024)) > 4) {
         toast({ title: "File should be less than 4mb 📄" })
@@ -33,7 +37,9 @@ const FileInput = () => {
       data.append("fileData", file)
       await saveFile(data, user?.user._id, parentFolder.parentFolder)
       toast({ title: "File Uploaded 📄" })
-      console.log("file uploaded")
+      setLoading(false)
+      setOpenDialog(false)
+      return
     } catch (err) {
       toast({ title: "Something went wrong", variant: "destructive" })
       console.log(err)
@@ -45,13 +51,14 @@ const FileInput = () => {
   }
   return (
     <div>
+      <div className='flex justify-center items-center'>
+        {loading && <Loader />}
+      </div>
       <div className="grid items-center gap-1.5">
         <Input id="fileInput" type="file" onChange={handleFileInputChange} />
       </div>
       <DialogFooter>
-        <DialogClose asChild>
-          <Button onClick={handleFileSubmit} >Upload</Button>
-        </DialogClose>
+        <Button onClick={() => handleFileSubmit()} >Upload</Button>
       </DialogFooter>
     </div>
   )

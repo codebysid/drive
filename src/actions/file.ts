@@ -1,13 +1,9 @@
 "use server"
-import { ObjectId } from "mongoose"
-import uploadOnCloudinary, { deleteFileFromCloudinary } from "../utils/cloudinary"
-import { writeFile } from "fs/promises"
-import path from "path"
-import { existsSync, mkdir } from "fs"
-import { nanoid } from 'nanoid'
 import connectToMongoDb from "@/utils/connectMongoDb"
-import File from "../models/File.model"
+import { ObjectId } from "mongoose"
 import { revalidatePath } from "next/cache"
+import File from "../models/File.model"
+import uploadOnCloudinary, { deleteFileFromCloudinary } from "../utils/cloudinary"
 
 export const saveFile = async (formData: FormData, owner: ObjectId, parentFolder: ObjectId) => {
   if (!formData || !owner) throw new Error("formData and owner required")
@@ -25,21 +21,13 @@ export const saveFile = async (formData: FormData, owner: ObjectId, parentFolder
 
 export const saveFileLocally = async (formData: FormData) => {
   try {
-    const id = nanoid()
     const file = formData.get("fileData") as File
     if (!file) return
-    console.log("file is", file)
-    const encodeFileName = encodeURIComponent(file.name)
-    const tmpDirectory = `/tmp/${id}_${encodeFileName}`;
-
     const bytes = await file.arrayBuffer()
     const mime = file.type
-
     const encoding = 'base64';
     const buffer = Buffer.from(bytes).toString('base64')
-
     const fileUri = 'data:' + mime + ';' + encoding + ',' + buffer;
-    console.log("file local path is", tmpDirectory)
     return fileUri
   } catch (err) {
     console.log(err)

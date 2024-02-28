@@ -1,5 +1,3 @@
-import React from "react";
-import { Button } from "../components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -7,18 +5,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FolderPlus, Paperclip } from "lucide-react";
+import dynamic from "next/dynamic";
+import React, { useState } from "react";
+import { Button } from "../components/ui/button";
 import FolderInput from "./FolderInput";
-import FileInput from "./CustomFileInput";
+const FileInput = dynamic(() => import('./CustomFileInput'))
+
 
 type TAddComponent = {
   title: string;
 };
 
 const AddComponent: React.FC<TAddComponent> = ({ title }) => {
+  const [openDialog, setOpenDialog] = useState(false)
   const isFolder = title.toLowerCase().includes("folder")
   return (
-    <Dialog>
+    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
         <Button variant="navItem" className="w-full md:text-xl lg:text-xl md:text-primary lg:text-primary md:underline md:underline-offset-8 lg:underline lg:underline-offset-8">
           {title}
@@ -29,7 +31,7 @@ const AddComponent: React.FC<TAddComponent> = ({ title }) => {
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
         {
-          isFolder ? <FolderInput /> : <FileInput />
+          isFolder ? <FolderInput /> : <FileInput setOpenDialog={setOpenDialog} />
         }
       </DialogContent>
     </Dialog>

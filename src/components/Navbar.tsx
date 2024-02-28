@@ -1,8 +1,4 @@
 "use client"
-import React from 'react'
-import SignOutButton from './SignOutButton'
-import AddFolder from './AddFolder'
-import AddFile from './AddFile'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,8 +8,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { Menu } from 'lucide-react'
-import Logo from './Logo'
-import BackButton from './BackButton'
+import dynamic from 'next/dynamic'
+import React from 'react'
+const AddFolder = dynamic(() => import("./AddFolder"))
+const AddFile = dynamic(() => import("./AddFile"))
+const Logo = dynamic(() => import("./Logo"))
+const BackButton = dynamic(() => import("./BackButton"))
+const SignOutButton = dynamic(() => import("./SignOutButton"))
 
 const Navbar = () => {
   return (

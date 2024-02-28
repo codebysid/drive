@@ -1,7 +1,9 @@
 "use client"
 import useFolder from '@/hooks/useFolder'
-import React, { useEffect } from 'react'
-import FolderCard from '../components/FolderCard'
+import dynamic from 'next/dynamic'
+import React from 'react'
+import { Skeleton } from './ui/skeleton'
+const FolderCard = dynamic(() => import("../components/FolderCard"), { loading: () => <Skeleton className="h-10 w-[10%]" /> })
 
 const DisplayFolders = () => {
   const folderData = useFolder()

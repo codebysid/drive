@@ -1,13 +1,14 @@
-import { ObjectId } from 'mongoose'
-import React from 'react'
 import {
   TableCell,
   TableRow,
 } from "@/components/ui/table"
 import { bytesToMb } from '@/utils/bytesToMb'
-import Link from 'next/link'
 import { formatTimeStamp } from '@/utils/formatTimeStamp'
-import DeleteFile from './DeleteFile'
+import { ObjectId } from 'mongoose'
+import dynamic from "next/dynamic"
+import Link from 'next/link'
+import React from 'react'
+const DeleteFile = dynamic(() => import("./DeleteFile"))
 
 type TFile = {
   name: string,
@@ -27,7 +28,6 @@ type TFileData = {
 
 const FileCard: React.FC<TFileData> = ({ fileData }) => {
   return (
-
     <TableRow key={fileData.name} className='flex-1'>
 
       <Link href={fileData.url} target='_blank' passHref>
