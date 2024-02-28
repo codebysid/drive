@@ -29,8 +29,6 @@ const uploadOnCloudinary = async (localPath: string, owner: string) => {
   } catch (err) {
     console.log("cloudinary error", err);
     throw err;
-  } finally {
-    unlinkSync(localPath);
   }
 }
 

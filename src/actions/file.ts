@@ -29,7 +29,6 @@ export const saveFileLocally = async (formData: FormData) => {
     const file = formData.get("fileData") as File
     if (!file) return
     console.log("file is", file)
-    //const fileDirectory = join(process.cwd(), "/public/temp/")
     const encodeFileName = encodeURIComponent(file.name)
     const tmpDirectory = `/tmp/${id}_${encodeFileName}`;
 
@@ -38,10 +37,6 @@ export const saveFileLocally = async (formData: FormData) => {
 
     const encoding = 'base64';
     const buffer = Buffer.from(bytes).toString('base64')
-    //if (!existsSync(tmpDirectory)) {
-    //mkdir(tmpDirectory, { recursive: true }, function() { })
-    //}
-    //await writeFile(tmpDirectory, buffer)
 
     const fileUri = 'data:' + mime + ';' + encoding + ',' + buffer;
     console.log("file local path is", tmpDirectory)
