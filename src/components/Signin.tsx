@@ -1,13 +1,13 @@
 "use client"
-import React from 'react'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import Logo from './Logo'
-import TechStack from './TechStack'
-import SigninAndCreateCard from './SigninAndCreateCard'
-import FAQ from './FAQ'
+import React from 'react'
+const Logo = dynamic(() => import("./Logo"))
+const TechStack = dynamic(() => import("./TechStack"))
+const SigninAndCreateCard = dynamic(() => import("./SigninAndCreateCard"))
+const FAQ = dynamic(() => import("./FAQ"))
 
 function Signin() {
-
   return (
     <div className='flex flex-col gap-14 w-full'>
       <Logo />

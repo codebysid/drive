@@ -1,7 +1,7 @@
-import BackButton from '@/components/BackButton'
-import DisplayFiles from '@/components/DisplayFiles'
-import DisplayFolders from '@/components/DisplayFolders'
+import dynamic from 'next/dynamic'
 import React from 'react'
+const DisplayFolders = dynamic(() => import("@/components/DisplayFolders"))
+const DisplayFiles = dynamic(() => import("@/components/DisplayFiles"))
 
 const page = () => {
   return (
