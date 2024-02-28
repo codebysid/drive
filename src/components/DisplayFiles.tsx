@@ -13,11 +13,11 @@ import FilesTableLoader from './FilesTableLoader'
 const FileCard = dynamic(() => import("./FileCard"), {
   loading: () => <FilesTableLoader />
 })
+
 const DisplayFiles = () => {
   const files = useFiles()
-
   return (
-    <div className='flex flex-row flex-wrap gap-3 h-[60vh] overflow-auto'>
+    <div className='flex flex-col gap-3 h-[60vh] overflow-auto'>
       {
         files.length > 0 && <h1 className='subHeading'>Your file's ↴</h1>
       }
