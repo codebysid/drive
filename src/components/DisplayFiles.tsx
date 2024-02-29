@@ -19,7 +19,7 @@ const DisplayFiles = () => {
   return (
     <div className='flex flex-col gap-3 h-[60vh] overflow-auto'>
       {
-        files.length > 0 && <h1 className='subHeading'>Your file's ↴</h1>
+        files?.length > 0 && <h1 className='subHeading'>Your file's ↴</h1>
       }
       {
         files.length > 0 && <Table>
@@ -33,7 +33,7 @@ const DisplayFiles = () => {
           </TableHeader>
           <TableBody>
             {
-              files && files.map((curr, key) => {
+              files?.length > 0 && files.map((curr, key) => {
                 return <FileCard key={key} fileData={curr} />
               })
             }

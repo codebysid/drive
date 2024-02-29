@@ -36,12 +36,12 @@ const SigninAndCreateCard = () => {
     } catch (err) {
       console.log(err)
 
-      toast({ title: "Email and Password required" })
+      toast({ title: "Something error in backend, try again later" })
     }
   }
 
   return (
-    <Tabs defaultValue="account" className="w-full">
+    <Tabs defaultValue="account" className="w-full md:w-full lg:w-1/2 md:absolute lg:absolute lg:top-80 lg:left-3/4 md:top-80 md:left-3/4 z-20">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="account">SignIn</TabsTrigger>
         <TabsTrigger value="password">Create Account</TabsTrigger>

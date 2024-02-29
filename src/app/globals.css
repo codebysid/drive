@@ -91,4 +91,6 @@
 ::-webkit-scrollbar-thumb {
   background: #2e1065;
 }
-
+.rotateArrow{
+  rotate:200deg;
+}
