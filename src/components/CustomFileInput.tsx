@@ -3,8 +3,6 @@ import { saveFile } from '@/actions/file'
 import { Input } from "@/components/ui/input"
 import useParentFolder from '@/hooks/useParentFolder'
 import useUser from '@/hooks/useUser'
-import { DialogClose } from '@radix-ui/react-dialog'
-import dynamic from 'next/dynamic'
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import Loader from "../components/Loader"
 import { Button } from './ui/button'
@@ -43,7 +41,7 @@ const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<b
       setOpenDialog(false)
       return
     } catch (err) {
-      toast({ title: "Something went wrong", variant: "destructive" })
+      toast({ title: "Unsupported File Format", variant: "destructive" })
       console.log(err)
     }
   }

@@ -34,8 +34,8 @@ const FileCard: React.FC<TFileData> = ({ fileData }) => {
         <TableCell className="font-medium text-blue-500 hover:underline">{fileData.name}</TableCell>
 
       </Link>
-      <TableCell>{fileData.format}</TableCell>
-      <TableCell>{bytesToMb(fileData.bytes as number)} MB</TableCell>
+      <TableCell>{fileData.format ? fileData.format : fileData.name.split(".").at(-1)}</TableCell>
+      <TableCell>{bytesToMb(fileData.bytes as number)} mB</TableCell>
       <TableCell className="text-right">{formatTimeStamp(fileData.createdAt)}</TableCell>
       <TableCell><DeleteFile mongoId={fileData._id} cloudinaryPublicId={fileData.cloudinaryPublicId} /></TableCell>
 

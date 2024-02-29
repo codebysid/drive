@@ -14,8 +14,7 @@ const fileSchema = new Schema({
     required: true
   },
   format: {
-    type: String,
-    required: true
+    type: String || undefined,
   },
   cloudinaryPublicId: {
     type: String,

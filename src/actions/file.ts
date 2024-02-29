@@ -12,7 +12,8 @@ export const saveFile = async (formData: FormData, owner: ObjectId, parentFolder
     const res = await uploadOnCloudinary(localPath as string, String(owner))
     const file = formData.get("fileData") as File
     if (!res) throw new Error("cant upload on cloudinary")
-    await saveFileOnMongo(res.url, owner, parentFolder, file.name, res.bytes, res.format, res.public_id)
+    const format = res.format || undefined
+    await saveFileOnMongo(res.url, owner, parentFolder, file.name, res.bytes, format, res.public_id)
     revalidatePath("/dash")
   } catch (err) {
     console.log(err)
@@ -34,11 +35,11 @@ export const saveFileLocally = async (formData: FormData) => {
   }
 }
 
-export const saveFileOnMongo = async (url: string, owner: ObjectId, parentFolder: ObjectId, fileName: string, bytes: Number, format: string, cloudinaryPublicId: string) => {
+export const saveFileOnMongo = async (url: string, owner: ObjectId, parentFolder: ObjectId, fileName: string, bytes: Number, format: string | undefined, cloudinaryPublicId: string) => {
   try {
     await connectToMongoDb(process.env.MONGODB_URI as string)
     await File.create({
-      url, owner, parentFolder, name: fileName, bytes, format, cloudinaryPublicId
+      url, owner, parentFolder, name: fileName, bytes, format: format, cloudinaryPublicId
     })
   } catch (err) {
     console.log(err)
