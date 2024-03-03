@@ -78,7 +78,7 @@ export const getTotalFileSize = async (owner: ObjectId) => {
     const totalBytes = parsedFiles.reduce((acc: number, ele: { bytes: number }) => {
       return acc + ele.bytes
     }, 0)
-    const bytesInMb = bytesToMb(totalBytes)
+    const bytesInMb = Number(bytesToMb(totalBytes))
     return bytesInMb
   } catch (err) {
     console.log(err)
