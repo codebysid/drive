@@ -31,7 +31,7 @@ const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<b
 
     try {
       const data = new FormData()
-      if (bytesToMb(file?.size) > 4) {
+      if (Number(bytesToMb(file?.size)) > 4) {
         toast({ title: "File should be less than 4mb 📄" })
         return
       }
