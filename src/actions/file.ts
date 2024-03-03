@@ -4,6 +4,7 @@ import { ObjectId } from "mongoose"
 import { revalidatePath } from "next/cache"
 import File from "../models/File.model"
 import uploadOnCloudinary, { deleteFileFromCloudinary } from "../utils/cloudinary"
+import { bytesToMb } from "@/utils/bytesToMb"
 
 export const saveFile = async (formData: FormData, owner: ObjectId, parentFolder: ObjectId) => {
   if (!formData || !owner) throw new Error("formData and owner required")
@@ -66,4 +67,20 @@ export const deleteFile = async (mongoId: ObjectId, cloudinaryPublicId: String) 
     console.log(err)
   }
 
+}
+
+export const getTotalFileSize = async (owner: ObjectId) => {
+  if (!owner) throw new Error("Owner ObjectId is not defined")
+  try {
+    const files = await File.find({ owner })
+    if (!files) return
+    const parsedFiles = JSON.parse(JSON.stringify(files))
+    const totalBytes = parsedFiles.reduce((acc: number, ele: { bytes: number }) => {
+      return acc + ele.bytes
+    }, 0)
+    const bytesInMb = bytesToMb(totalBytes)
+    return bytesInMb
+  } catch (err) {
+    console.log(err)
+  }
 }

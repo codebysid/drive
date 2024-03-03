@@ -19,8 +19,8 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         iconButton: "bg-primary text-primary-foreground hover:bg-primary/90 flex flex-row gap-4 items-center",
-        navItem: " hover:bg-accent hover:text-accent-foreground flex flex-row justify-start gap-4 items-center",
-        signOutButton: " bg-background hover:bg-accent hover:text-accent-foreground flex flex-row justify-start gap-4 items-center text-red-500 hover:text-red-500"
+
+
       },
       size: {
         default: "h-10 px-4 py-2",

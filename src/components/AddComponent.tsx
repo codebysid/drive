@@ -22,7 +22,7 @@ const AddComponent: React.FC<TAddComponent> = ({ title }) => {
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
-        <Button variant="navItem" className="w-full md:text-xl lg:text-xl md:text-primary lg:text-primary md:underline md:underline-offset-8 lg:underline lg:underline-offset-8">
+        <Button variant="ghost" size="sm" className="w-full">
           {title}
         </Button>
       </DialogTrigger>

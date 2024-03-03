@@ -8,12 +8,15 @@ import Loader from "../components/Loader"
 import { Button } from './ui/button'
 import { DialogFooter } from './ui/dialog'
 import { useToast } from './ui/use-toast'
+import useFileMemory from '@/hooks/useFileMemory'
+import { bytesToMb } from '@/utils/bytesToMb'
 
 const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<boolean>> }) => {
   const [file, setFile] = useState<File>()
   const [loading, setLoading] = useState(false)
   const user = useUser()
   const parentFolder = useParentFolder()
+  const ocuppiedMemory = useFileMemory()
   const { toast } = useToast()
 
   const handleFileSubmit = async () => {
@@ -28,11 +31,14 @@ const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<b
 
     try {
       const data = new FormData()
-      if ((file.size / (1024 * 1024)) > 4) {
+      if (bytesToMb(file?.size) > 4) {
         toast({ title: "File should be less than 4mb 📄" })
         return
       }
-
+      if ((200 - ocuppiedMemory) < bytesToMb(file?.size)) {
+        toast({ title: "No available memory, delete some files 🗑️" })
+        return
+      }
       setLoading(true)
       data.append("fileData", file)
       await saveFile(data, user?.user._id, parentFolder.parentFolder)

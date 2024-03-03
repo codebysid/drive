@@ -1,4 +1,4 @@
-export const bytesToMb = (bytes: number) => {
+export const bytesToMb = (bytes: Number): number => {
   if (!bytes) return
-  return (bytes / (1024 * 1024)).toFixed(2).toString()
+  return (bytes / (1024 * 1024)).toFixed(2)
 }
