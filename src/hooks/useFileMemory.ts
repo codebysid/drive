@@ -4,7 +4,7 @@ import useUser from "./useUser"
 import { getTotalFileSize } from "../actions/file"
 const useFileMemory = () => {
   const user = useUser()
-  const [totalFilesSize, setTotalFilesSize] = useState(0)
+  const [totalFilesSize, setTotalFilesSize] = useState("")
 
   const calculateFilesMemory = async () => {
     if (!user?.user._id) return
