@@ -10,6 +10,7 @@ import { DialogFooter } from './ui/dialog'
 import { useToast } from './ui/use-toast'
 import useFileMemory from '@/hooks/useFileMemory'
 import { bytesToMb } from '@/utils/bytesToMb'
+import { totalMemoryForUser } from '@/utils/Memory'
 
 const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<boolean>> }) => {
   const [file, setFile] = useState<File>()
@@ -35,7 +36,7 @@ const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<b
         toast({ title: "File should be less than 4mb 📄" })
         return
       }
-      if ((200 - ocuppiedMemory) < bytesToMb(file?.size)) {
+      if ((totalMemoryForUser - ocuppiedMemory) < bytesToMb(file?.size)) {
         toast({ title: "No available memory, delete some files 🗑️" })
         return
       }

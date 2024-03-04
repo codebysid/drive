@@ -10,7 +10,7 @@ import {
 import { Menu } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import React from 'react'
-import MemoryLimit from "./MemoryLimit"
+const MemoryLimit = dynamic(() => import("./MemoryLimit"))
 const AddFolder = dynamic(() => import("./AddFolder"))
 const AddFile = dynamic(() => import("./AddFile"))
 const Logo = dynamic(() => import("./Logo"))
@@ -19,7 +19,7 @@ const SignOutButton = dynamic(() => import("./SignOutButton"))
 
 const Navbar = () => {
   return (
-    <div className='flex flex-row items-center justify-between md:justify-around lg:justify-around pb-6'>
+    <div className='flex flex-row items-center justify-between pb-6 w-full pr-5'>
       <div className='flex flex-row items-center'>
         <BackButton />
         <Logo />
@@ -31,7 +31,9 @@ const Navbar = () => {
             <NavigationMenuContent className='w-fit'>
               <NavigationMenuLink asChild><AddFolder /></NavigationMenuLink>
               <NavigationMenuLink asChild><AddFile /></NavigationMenuLink>
+              <NavigationMenuLink asChild><MemoryLimit /></NavigationMenuLink>
               <NavigationMenuLink asChild><SignOutButton /></NavigationMenuLink>
+
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -40,6 +42,7 @@ const Navbar = () => {
         <div className="flex flex-row gap-4">
           <AddFolder />
           <AddFile />
+          <MemoryLimit />
         </div>
         <div>
           <SignOutButton />
