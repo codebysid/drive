@@ -4,9 +4,8 @@ import ParentFolderProvider from "@/context/ParentFolderProvider";
 import Provider from "@/context/Provider";
 import UserProvider from "@/context/UserProvider";
 import type { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import { Inter } from "next/font/google";
-import { authOptions } from "../utils/auth";
+import { auth } from "../utils/auth";
 import "./globals.css";
 import DevFooter from "@/components/DevFooter";
 import React from "react"
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions)
+  const session = await auth()
   return (
     <html lang="en">
       <Provider>
