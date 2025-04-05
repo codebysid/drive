@@ -16,9 +16,9 @@ const FolderCard: React.FC<TFolderCard> = ({ folderData }) => {
     parentFolder?.updateParentFolder(folderId)
   }
   return (
-    <div onClick={() => handleClicK(folderData._id)} className='fileAndFolderBorder'>
-      <FolderOpen />
-      <span>{folderData.name}</span></div>
+    <div title={folderData.name as string} onClick={() => handleClicK(folderData._id)} className='flex flex-row gap-2 px-2 py-2 cursor-pointer hover:bg-secondary border-b'>
+      <FolderOpen className=' size-5' />
+      <span className='whitespace-nowrap overflow-hidden text-ellipsis w-[75%]'>{folderData.name}</span></div>
   )
 }
 

@@ -29,17 +29,17 @@ type TFileData = {
 const FileCard: React.FC<TFileData> = ({ fileData }) => {
   return (
     <TableRow key={fileData.name} className='flex-1'>
-
-      <Link href={fileData.url} target='_blank' passHref>
-        <TableCell className="font-medium text-blue-500 hover:underline">{fileData.name}</TableCell>
-
-      </Link>
+      <TableCell className="font-medium text-blue-500 hover:underline">
+        <Link href={fileData.url} target='_blank' passHref>
+          {fileData.name}
+        </Link>
+      </TableCell>
       <TableCell>{fileData.format ? fileData.format : fileData.name.split(".").at(-1)}</TableCell>
       <TableCell>{bytesToMb(Number(fileData.bytes))} mB</TableCell>
       <TableCell className="text-right">{formatTimeStamp(fileData.createdAt)}</TableCell>
       <TableCell><DeleteFile mongoId={fileData._id} cloudinaryPublicId={fileData.cloudinaryPublicId} /></TableCell>
 
-    </TableRow>
+    </TableRow >
 
   )
 }

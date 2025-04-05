@@ -7,19 +7,18 @@ import { Button } from "../components/ui/button"
 import { DialogClose, DialogFooter } from "../components/ui/dialog"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
-import { useToast } from './ui/use-toast'
+import { toast } from 'sonner'
 
 const FolderInput = () => {
   const [folderName, setFolderName] = useState("")
   const user = useUser()
   const parentFolder = useParentFolder()
-  const { toast } = useToast()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setFolderName(e.target.value)
 
   const handleFolderClick = async () => {
     if (!folderName || !user?.user?._id) {
-      toast({ title: "Folder Name is required 👀" })
+      toast.warning("Folder Name is required")
       return
     }
     try {
@@ -28,7 +27,7 @@ const FolderInput = () => {
     } catch (err) {
       console.log(err)
 
-      toast({ title: "Something went wrong", variant: "destructive" })
+      toast.error("Something went wrong")
     }
   }
   return (

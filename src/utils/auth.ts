@@ -41,10 +41,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   // ],
   callbacks: {
     async session({ session }) {
-      console.log("1:auth.ts", { session })
       if (!session || !session.user) return session
       await createGoogleUser(session.user.email as string)
-      console.log("2:auth.ts", { session })
       return session
     }
   },

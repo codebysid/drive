@@ -11,7 +11,6 @@ const userRoutes = ["/", "/create"]
 
 export async function middleware(request: NextRequest) {
   const session = await auth()
-  console.log("1:middleware.ts", { session })
   if (!session && protectedRoutes.includes(request.nextUrl.pathname)) {
     const absoluteUrl = new URL("/", request.nextUrl.origin)
     return NextResponse.redirect(absoluteUrl.toString())
