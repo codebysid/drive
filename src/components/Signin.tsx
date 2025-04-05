@@ -1,32 +1,26 @@
 "use client"
 import React from 'react'
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
-import { PiArrowArcLeftLight } from "react-icons/pi";
-const Logo = dynamic(() => import("./Logo"))
-const TechStack = dynamic(() => import("./TechStack"))
+import { Meteors } from './ui/meteors';
 const SigninAndCreateCard = dynamic(() => import("./SigninAndCreateCard"))
-const FAQ = dynamic(() => import("./FAQ"))
 
 function Signin() {
   return (
-    <div className='flex flex-col gap-14 w-full'>
-      <Logo />
-      <div className='flex flex-col md:flex-row lg:flex-row md:h-[80vh] lg:h-[80vh] gap-10 lg:items-start lg:justify-center md:justify-center md:items-start lg:relative md:relative'>
-        <div className='flex flex-col gap-10 lg:justify-center md:justify-center md:relative lg:relative'>
-          <h2 className='text-3xl font-bold md:text-4xl lg:text-4xl lg:w-3/4 md:w-3/4 md:pt-28 lg:pt-28'><span className='primaryText'>Store,</span> <span className='primaryText'>View,</span> and <span className='primaryText'>Access</span> files seamlessly.<br /><br />All at one<span className='primaryText'> place.</span></h2>
-          <PiArrowArcLeftLight className='md:w-1/2 md:h-1/2 lg:w-60 lg:h-60 rotateArrow text-primary md:top-full md:left-20 lg:left-52 hidden md:block lg:block absolute' />
-          <SigninAndCreateCard />
-        </div>
-        <div className='relative w-full md:w-full lg:w-1/2 h-[40vh] lg:h-full md:h-full'>
-          <Image src="/cloud.jpg" sizes='100vw' className=' object-cover rounded-xl' alt='created with Adobe Firefly' fill />
-        </div>
+    <div className='flex flex-col gap-10 items-center justify-center w-full min-h-screen max-h-screen'>
+      <h2 className='font-extrabold text-[110px] lg:text-[240px] md:text-[240px] whitespace-nowrap lg:pt-11 md:pt-11 bg-linear-to-b from-neutral-800 to-neutral-500 text-transparent bg-clip-text absolute'>
+        NEXT
+        <br className=' lg:hidden md:hidden' />
+        DRIVE
+      </h2>
+      <div className='w-[60%] h-[35vh] lg:w-[40%] md:w-[40%] lg:h-[85vh] md:h-[85vh] rounded-full bg-black/40 backdrop-blur-sm border flex flex-col justify-center items-center gap-2 lg:gap-5 md:gap-5'>
+        <p className=' font-bold text-sm px-2 lg:px-0 md:px-0 lg:text-2xl md:text-2xl text-balance text-center'>
+          Store, Access & View your files seamlessly. All at One Place.
+        </p>
+        <SigninAndCreateCard />
+        <Meteors number={12} />
       </div>
-      <TechStack />
-      <FAQ />
-    </div>
+    </div >
   )
 }
 
 export default Signin
-

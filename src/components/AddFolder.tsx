@@ -4,7 +4,7 @@ const AddComponent = dynamic(() => import("./AddComponent"))
 
 const AddFolder = () => {
   return (
-    <AddComponent title='Add Folder' />
+    <AddComponent title='Create Folder' />
   )
 }
 

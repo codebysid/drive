@@ -1,56 +1,59 @@
-import { ArrowUpRight, UploadCloud } from 'lucide-react'
+import { UploadCloud } from 'lucide-react'
 import { TbBrandNextjs } from "react-icons/tb"
 import { BiLogoMongodb } from "react-icons/bi"
 import { SiTailwindcss } from "react-icons/si"
 import { FaShieldAlt } from "react-icons/fa"
 import { FaGripLines } from "react-icons/fa"
 import React from 'react'
-import Link from 'next/link'
+import TechStackCard from './TechStackCard'
 
 const techStack = [
   {
-    name: "Next.js 14",
-    icon: <TbBrandNextjs className='iconSize' />,
+    id: 1,
+    name: "Next.js",
+    icon: <TbBrandNextjs className='w-7 h-7' />,
     url: "https://nextjs.org/"
   },
   {
-    name: "ShadCN UI",
+    id: 2,
+    name: "ShadCN UI & Aceternity",
     url: "https://ui.shadcn.com/",
-    icon: <FaGripLines className='iconSize' />
+    icon: <FaGripLines className='w-7 h-7' />
   },
   {
+    id: 3,
     name: "TailwindCSS",
     url: "https://tailwindcss.com/",
-    icon: <SiTailwindcss className='iconSize' />
+    icon: <SiTailwindcss className='w-7 h-7' />
   },
   {
+    id: 4,
     name: "Cloudinary",
     url: "https://cloudinary.com/",
-    icon: <UploadCloud className='iconSize' />
+    icon: <UploadCloud className='w-7 h-7' />
   },
   {
+    id: 5,
     name: "NextAuth",
-    icon: <FaShieldAlt className='iconSize' />,
+    icon: <FaShieldAlt className='w-7 h-7' />,
     url: "https://next-auth.js.org/"
-  }, {
+  },
+  {
+    id: 6,
     name: "MongoDB",
     url: "https://www.mongodb.com/docs/atlas/",
-    icon: <BiLogoMongodb className='iconSize' />
+    icon: <BiLogoMongodb className='w-7 h-7' />
   }
 ]
 
 const TechStack = () => {
   return (
-    <div className='flex flex-col flex-wrap gap-3'>
+    <div className='flex flex-col flex-wrap gap-3 px-10 slide-up'>
       <h1 className='text-3xl font-bold text-secondary'>Our Tech Stack ↴</h1>
       <div className='flex flex-col gap-3 md:flex-row lg:flex-row flex-wrap'>
         {
-          techStack.map((tech, key) => {
-            return <Link key={key} target='_blank' href={tech.url} className='border-2 border-transparent hover:border hover:border-primary rounded-full'><div className='rounded-full p-4 flex flex-row items-center gap-2 flex-1 py-2 bg-secondary lg:w-[47vw] md:w-[42vw]'>
-              <div className={`bg-secondary w-min p-2 rounded-full ${tech.name === "ShadCN UI" && "-rotate-45"}`}>{tech.icon}</div>
-              <p className='font-bold text-xl flex flex-row justify-between w-full items-center'>{tech.name}<ArrowUpRight className='text-primary' /></p>
-            </div>
-            </Link>
+          techStack.map(({ name, url, id, icon }) => {
+            return <TechStackCard key={id} icon={icon} name={name} url={url} />
           })
         }
       </div>

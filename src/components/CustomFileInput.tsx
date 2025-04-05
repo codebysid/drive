@@ -7,7 +7,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react'
 import Loader from "../components/Loader"
 import { Button } from './ui/button'
 import { DialogFooter } from './ui/dialog'
-import { useToast } from './ui/use-toast'
+import { toast } from 'sonner'
 import useFileMemory from '@/hooks/useFileMemory'
 import { bytesToMb } from '@/utils/bytesToMb'
 import { totalMemoryForUser } from '@/utils/Memory'
@@ -18,37 +18,36 @@ const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<b
   const user = useUser()
   const parentFolder = useParentFolder()
   const ocuppiedMemory = useFileMemory()
-  const { toast } = useToast()
 
   const handleFileSubmit = async () => {
     if (!parentFolder?.parentFolder) {
-      toast({ title: "Get inside a folder first 😵" })
+      toast.warning("Get inside a folder first")
       return
     }
     if (!file || !user?.user._id) {
-      toast({ title: "File is not selected 😵" })
+      toast.warning("File is not selected")
       return
     }
 
     try {
       const data = new FormData()
       if (bytesToMb(file?.size) > 4) {
-        toast({ title: "File should be less than 4mb 📄" })
+        toast.error("File should be less than 4mb")
         return
       }
       if ((totalMemoryForUser - ocuppiedMemory) < bytesToMb(file?.size)) {
-        toast({ title: "No available memory, delete some files 🗑️" })
+        toast.error("No available memory, delete some files")
         return
       }
       setLoading(true)
       data.append("fileData", file)
       await saveFile(data, user?.user._id, parentFolder.parentFolder)
-      toast({ title: "File Uploaded 📄" })
+      toast.success("File Uploaded")
       setLoading(false)
       setOpenDialog(false)
       return
     } catch (err) {
-      toast({ title: "Unsupported File Format", variant: "destructive" })
+      toast.error("Unsupported File Format")
       console.log(err)
     }
   }
@@ -65,7 +64,7 @@ const FileInput = ({ setOpenDialog }: { setOpenDialog: Dispatch<SetStateAction<b
         <Input id="fileInput" type="file" onChange={handleFileInputChange} />
       </div>
       <DialogFooter>
-        <Button onClick={() => handleFileSubmit()} >Upload</Button>
+        <Button onClick={() => handleFileSubmit()} disabled={loading}>Upload</Button>
       </DialogFooter>
     </div>
   )

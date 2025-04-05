@@ -9,6 +9,8 @@ import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { Button } from "../components/ui/button";
 import FolderInput from "./FolderInput";
+import { MdOutlineCreateNewFolder } from "react-icons/md";
+import { TbFileUpload } from "react-icons/tb";
 const FileInput = dynamic(() => import('./CustomFileInput'))
 
 
@@ -22,7 +24,12 @@ const AddComponent: React.FC<TAddComponent> = ({ title }) => {
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
-        <Button variant="ghost" size="sm" className="">
+        <Button variant="ghost" title={title} className=" text-md">
+          {
+            isFolder ?
+              <MdOutlineCreateNewFolder className=" size-5" />
+              : <TbFileUpload className="size-5" />
+          }
           {title}
         </Button>
       </DialogTrigger>

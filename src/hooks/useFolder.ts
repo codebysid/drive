@@ -3,7 +3,7 @@ import { getFolders } from '@/actions/folder'
 import useUser from './useUser'
 import { useEffect, useState } from 'react'
 import useParentFolder from './useParentFolder'
-import { useToast } from '@/components/ui/use-toast'
+import { toast } from 'sonner'
 import { ObjectId } from 'mongoose'
 
 type TData = {
@@ -17,12 +17,11 @@ const useFolder = () => {
   const [folderData, setFolderData] = useState([])
   const user = useUser()
   const parentFolder = useParentFolder()
-  const { toast } = useToast()
 
   const handleGetFolders = async () => {
 
     if (!user?.user._id) {
-      toast({ title: "Login Pls 🤦" })
+      toast.warning("Login Pls")
       return
     }
 
@@ -45,7 +44,7 @@ const useFolder = () => {
       return
     } catch (err) {
 
-      toast({ title: "Something went wrong", variant: "destructive" })
+      toast.warning("Something went wrong")
       console.log(err)
     }
   }

@@ -3,7 +3,7 @@ import React from 'react'
 import { Button } from './ui/button'
 import { deleteFile } from '@/actions/file'
 import { ObjectId } from 'mongoose'
-import { useToast } from './ui/use-toast'
+import { toast } from 'sonner'
 import { customRevalidate } from '@/actions/customRevalidate'
 
 type TDeleteFile = {
@@ -14,15 +14,14 @@ type TDeleteFile = {
 
 const DeleteFile: React.FC<TDeleteFile> = ({ mongoId, cloudinaryPublicId }) => {
 
-  const { toast } = useToast()
   const handleDelete = async () => {
     try {
       await deleteFile(mongoId, cloudinaryPublicId)
-      toast({ title: "File Deleted 👍" })
+      toast.success("File Deleted")
       await customRevalidate("/dash")
     } catch (err) {
 
-      toast({ title: "Something went wrong", variant: "destructive" })
+      toast.error("Something went wrong")
 
       console.log(err)
     }
