@@ -12,7 +12,7 @@ function Signin() {
         <br className=' lg:hidden md:hidden' />
         DRIVE
       </h2>
-      <div className='w-[60%] h-[35vh] lg:w-[40%] lg:h-[85%] rounded-full bg-black/40 backdrop-blur-sm border flex flex-col justify-center items-center gap-4 lg:gap-5 md:gap-5'>
+      <div className='w-[65%] h-[30vh] lg:w-[40%] lg:h-[85%] rounded-full bg-black/40 backdrop-blur-sm border flex flex-col justify-center items-center gap-4 lg:gap-5 md:gap-5'>
         <p className=' font-bold text-sm px-2 lg:px-0 md:px-0 lg:text-2xl md:text-2xl text-balance text-center'>
           Store, Access & View your files seamlessly. All at One Place.
         </p>

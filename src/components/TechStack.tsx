@@ -48,9 +48,9 @@ const techStack = [
 
 const TechStack = () => {
   return (
-    <div className='flex flex-col flex-wrap gap-3 px-10 slide-up'>
+    <div className='flex flex-col gap-7 lg:gap-4 md:gap-4 pl-4 pr-10 slide-up '>
       <h1 className='text-3xl font-bold text-secondary'>Our Tech Stack ↴</h1>
-      <div className='flex flex-col gap-3 md:flex-row lg:flex-row flex-wrap'>
+      <div className='flex flex-col items-start w-full gap-3 md:flex-row lg:flex-row flex-wrap'>
         {
           techStack.map(({ name, url, id, icon }) => {
             return <TechStackCard key={id} icon={icon} name={name} url={url} />

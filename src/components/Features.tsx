@@ -27,9 +27,9 @@ const featureData = [
 
 const Features = () => {
     return (
-        <div className=" slide-up">
-            <h1 className='text-3xl font-bold text-secondary px-10'>Features ↴</h1>
-            <div className=" flex flex-col gap-12 lg:flex-row md:flex-row pt-7 lg:pt-4 md:pt-4">
+        <div className="flex flex-col gap-7 lg:gap-4 md:gap-4 pl-10 slide-up">
+            <h1 className='text-3xl font-bold text-secondary'>Features ↴</h1>
+            <div className=" flex flex-col gap-12 lg:flex-row md:flex-row ">
                 {
                     featureData.map(({ id, title, description }) => {
                         return <FeatureCard key={id} description={description} title={title} />
