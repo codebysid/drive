@@ -43,7 +43,7 @@ const MemoryLimit = () => {
         </DrawerHeader>
         <DrawerFooter>
           <DrawerClose>
-            <Button variant="outline">Close</Button>
+            {/* <Button variant="outline">Close</Button> */}
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
