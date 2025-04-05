@@ -21,7 +21,7 @@ const featureData = [
     {
         id: 4,
         title: "200mb Storage",
-        description: "Every user has limit of 200mb storage, as this whole project is running on free services"
+        description: "Every user has limit of 200mb because project is running on free services"
     }
 ]
 

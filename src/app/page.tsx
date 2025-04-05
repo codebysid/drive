@@ -8,7 +8,7 @@ const Footer = dynamic(() => import("../components/Footer"))
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-10 items-center min-h-screen">
+    <main className="flex flex-col gap-10 items-center min-h-screen max-w-screen">
       <Signin />
       <Features />
       <div className="lg:py-28 md:py-28">
