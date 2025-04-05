@@ -7,7 +7,7 @@ const SigninAndCreateCard = dynamic(() => import("./SigninAndCreateCard"))
 function Signin() {
   return (
     <div className='flex flex-col gap-10 items-center justify-center w-full min-h-screen max-h-screen'>
-      <h2 className='font-extrabold text-[110px] lg:text-[15vw] md:text-[15vw] whitespace-nowrap lg:pt-11 md:pt-11 bg-linear-to-b from-neutral-800 to-neutral-500 text-transparent bg-clip-text absolute text-center'>
+      <h2 className='font-extrabold text-[30vw] lg:text-[15vw] md:text-[15vw] whitespace-nowrap lg:pt-11 md:pt-11 bg-linear-to-b from-neutral-800 to-neutral-500 text-transparent bg-clip-text absolute text-center'>
         NEXT
         <br className=' lg:hidden md:hidden' />
         DRIVE
