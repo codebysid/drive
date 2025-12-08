@@ -68,7 +68,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 {
                   session && <SidebarTrigger />
                 }
-                {children}
+                <main className=" flex justify-center w-screen">
+                  {children}
+                </main>
               </SidebarProvider>
             </body>
           </ParentFolderProvider>

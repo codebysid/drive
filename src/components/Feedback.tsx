@@ -15,16 +15,19 @@ const Feedback = () => {
         setNumberOfTweetsToDisplay(() => (numberOfTweetsToDisplay < 10 ? 10 : 5))
     }
     return (
-        <div className=" w-full slide-up">
-            <h1 className='text-3xl font-bold text-secondary px-10'>Reviews ↴</h1>
-            <div className=" flex flex-row flex-wrap justify-center gap-4 lg:gap-10 md:gap-10">
-                {tweetIds.slice(0, numberOfTweetsToDisplay).map((tweetId) =>
-                    <ClientTweetCard key={tweetId} id={tweetId} className=" w-[40%] text-xs h-full" />
-                )
-                }
-            </div>
-            <div className=" flex justify-center items-center py-10 bg-linear-to-b from-transparent to-primary-foreground">
-                <Button variant="outline" onClick={expandNumberOfTweets}>{numberOfTweetsToDisplay == 10 ? "Collapse..." : "Expand..."}</Button>
+        <div className=" dott-pattern w-screen flex justify-center overflow-x-hidden">
+            <div className="slide-up py-6 max-w-[1200px]">
+
+                <h1 className='text-3xl font-bold text-secondary px-10'>Reviews ↴</h1>
+                <div className=" flex flex-row flex-wrap justify-center gap-4 lg:gap-10 md:gap-10">
+                    {tweetIds.slice(0, numberOfTweetsToDisplay).map((tweetId) =>
+                        <ClientTweetCard key={tweetId} id={tweetId} className=" w-[40%] text-xs h-full" />
+                    )
+                    }
+                </div>
+                <div className=" flex justify-center items-center py-10">
+                    <Button variant="outline" onClick={expandNumberOfTweets}>{numberOfTweetsToDisplay == 10 ? "Collapse..." : "Expand..."}</Button>
+                </div>
             </div>
         </div>
     )
