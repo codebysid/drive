@@ -16,8 +16,7 @@ const Feedback = () => {
     }
     return (
         <div className=" dott-pattern w-screen flex justify-center overflow-x-hidden">
-            <div className="slide-up py-6 max-w-[1200px]">
-
+            <div className="slide-up py-6 max-w-[1200px] space-y-7">
                 <h1 className='text-3xl font-bold text-secondary px-10'>Reviews ↴</h1>
                 <div className=" flex flex-row flex-wrap justify-center gap-4 lg:gap-10 md:gap-10">
                     {tweetIds.slice(0, numberOfTweetsToDisplay).map((tweetId) =>

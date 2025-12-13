@@ -2,24 +2,24 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import { Meteors } from './ui/meteors';
+import Image from 'next/image';
 const SigninAndCreateCard = dynamic(() => import("./SigninAndCreateCard"))
 
 function Signin() {
   return (
-    <div className='flex flex-col gap-10 items-center justify-center w-full min-h-screen max-h-screen'>
-      <h2 className='font-extrabold text-[30vw] lg:text-[15vw] md:text-[15vw] whitespace-nowrap lg:pt-11 md:pt-11 bg-linear-to-b from-neutral-800 to-neutral-500 text-transparent bg-clip-text absolute text-center'>
-        NEXT
-        <br className=' lg:hidden md:hidden' />
-        DRIVE
-      </h2>
-      <div className='w-[350px] h-[350px] lg:w-[700px] lg:h-[700px] rounded-full bg-black/40 backdrop-blur-sm border flex flex-col justify-center items-center gap-4 lg:gap-5 md:gap-5'>
-        <p className=' font-bold text-sm px-2 lg:px-0 md:px-0 lg:text-2xl md:text-2xl text-balance text-center'>
-          Store, Access & View your files seamlessly. All at One Place.
-        </p>
-        <SigninAndCreateCard />
-        <Meteors number={12} />
-      </div>
+    <div className=' w-full flex flex-col items-center justify-center h-screen'>
+      {/* <div className='text-center text-balance absolute w-[50%] bg-black/60 z-20 rounded-full h-[70%] flex flex-col justify-center items-center'>
+        <h1 className='text-6xl font-bold'>NEXT DRIVE</h1>
+        <h2 className='text-xl w-1/2 text-secondary-foreground/80'>Store, view and access your files seamlessly. Anywhere you want.</h2>
+      </div> */}
+      <Image
+        width={400}
+        height={400}
+        src={"/memory-tree.webp"}
+        className='w-[70%] h-auto mix-blend-hard-light glow absolute opacity-60'
 
+        alt='green tree: ai generated image'
+      />
     </div >
   )
 }

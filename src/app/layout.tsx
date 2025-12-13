@@ -6,10 +6,10 @@ import UserProvider from "@/context/UserProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { auth } from "../utils/auth";
-import "./globals.css";
 import React from "react"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/AppSidebar";
+import "@/app/globals.css"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,7 +68,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 {
                   session && <SidebarTrigger />
                 }
-                <main className=" flex justify-center w-screen">
+                <main className="w-screen flex justify-center">
                   {children}
                 </main>
               </SidebarProvider>
